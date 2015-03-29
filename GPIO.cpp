@@ -7,7 +7,7 @@
 
 #include "GPIO.hpp"
 
-void GPIO::setup() {
+inline void GPIO::setup() {
 
 	GPIO_DIR = "/sys/class/gpio/";
 
@@ -25,13 +25,14 @@ void GPIO::setup() {
 		os << direction;
 	} else {
 		std::cout << "Wrong direction";
-		return;
+
 	}
 
 	os.close();
 }
 
-void GPIO::set_value(int state) {
+inline void GPIO::set_value(int state) {
+	//Set GPIO pin Value.
 	GPIO_DIR = "/sys/class/gpio/gpio" + pin + "/value";
 
 	os.open((GPIO_DIR).c_str());
@@ -39,8 +40,8 @@ void GPIO::set_value(int state) {
 	os.close();
 }
 
-int GPIO::get_value() {
-	//Get GPIO Pin Value
+inline int GPIO::get_value() {
+	//Get GPIO Pin Value.
 	char value;
 	GPIO_DIR = "/sys/class/gpio/gpio" + pin + "/value";
 
@@ -52,7 +53,7 @@ int GPIO::get_value() {
 	return num - 48;
 }
 
-std::string GPIO::get_direction() {
+inline std::string GPIO::get_direction() {
 	//Get direction.
 	std::string direction;
 	GPIO_DIR = "/sys/class/gpio/gpio" + pin + "/direction";
@@ -63,7 +64,7 @@ std::string GPIO::get_direction() {
 	return direction;
 }
 
-void GPIO::remove() {
+inline void GPIO::remove() {
 	//Unexport GPIO Pin.
 	GPIO_DIR = "/sys/class/gpio/unexport";
 
