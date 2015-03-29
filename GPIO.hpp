@@ -1,8 +1,8 @@
 /*
  * GPIO.hpp
  *
- *  Created on: Mar 21, 2015
- *      Author: Batuhan Buyukguzel
+ *  Created on: 30 Mar 2015
+ *      Author: AyberkHalac
  */
 
 #ifndef GPIO_HPP_
@@ -12,14 +12,15 @@
 #include <iostream>
 #include <string>
 
-
 class GPIO {
 
 private:
 	std::string GPIO_DIR, pin, direction;
-	std::fstream fs; // File stream
+	std::ofstream os; //OFSTREAM
+	std::ifstream is; //IFSTREAM
 
 public:
+
 	GPIO(std::string GPIO_Pin, std::string dir) :
 			pin(GPIO_Pin), direction(dir) {
 		setup();
